@@ -64,13 +64,13 @@ nalaconc<-mcstoc(rlnorm,type="VU",meanlog=naladistr$estimate['meanlog'],sdlog=na
 #DISTRIBUTION PARAMETERS FOR THE INGESTION OF DIFFERENT EXPOSURE PATHWAYS, PER AGE GROUP
 #1-ingestion of drinking water (ml/day)
 #0-5 months
-logmeandrinkingwateringestion05<-4.12
+logmeandrinkingwateringestion05<-3.37
 logsddrinkingwateringestion05<-1.23
 #6-11 months
-logmeandrinkingwateringestion611<-5.59
+logmeandrinkingwateringestion611<-5.24
 logsddrinkingwateringestion611<-0.85
 #12-23 months
-logmeandrinkingwateringestion1223<-4.98
+logmeandrinkingwateringestion1223<-4.58
 logsddrinkingwateringestion1223<-0.89
 
 #2-ingestion of bathing water (ml/day)
@@ -81,8 +81,8 @@ logsddrinkingwateringestion1223<-0.89
 #logmeanbathingwateringestion611<-0
 #logsdbathingwateringestion611<-0
 #12-23 months
-logmeanbathingwateringestion1223<-3.64
-logsdbathingwateringestion1223<-0.72
+logmeanbathingwateringestion1223<-3.49
+logsdbathingwateringestion1223<-0.55
 
 
 #SIMULATIONS ARE ASSIGNED RANDOM INGESTION VOLUMES AS PER THE DISTRIBUTIONS FOUND
@@ -108,7 +108,7 @@ bathingwatering1223<-mcstoc(rlnorm,type="VU",meanlog=logmeanbathingwateringestio
 #************************************
 #************************************
 ratio<-0.08 #e.coli to pathogen ratio. E.coli0157=0.08, campylobacter=0.66, rotavirus=0.00005
-alpha<-0.145 #bpoisson pathogen parameter. E.coli0157=0.2099, campylobacter=0.145, rotavirus=0.2531
+alpha<-0.2099 #bpoisson pathogen parameter. E.coli0157=0.2099, campylobacter=0.145, rotavirus=0.2531
 n50<-1120 #bpoisson pathogen parameter. E.coli0157=1120, campylobacter=895.52, rotavirus=6.16
 #*****************************
 #*****************************
