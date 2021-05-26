@@ -1,3 +1,4 @@
+#Sensitivity- Ingestion
 #Install packages
 install.packages("fitdistrplus")
 library(fitdistrplus)
@@ -65,15 +66,21 @@ caregiverhandconc<-mcstoc(rlnorm,type="VU",meanlog=caregiverhanddistr$estimate['
 soilconc<-mcstoc(rlnorm,type="VU",meanlog=soildistr$estimate['meanlog'],sdlog=soildistr$estimate['sdlog'], seed=41) #distribution of pathogen concentration with "V"ariability
 
 #INGESTION DISTRIBUTION PARAMETERS, PER AGE GROUP
+
+#******************ALTER SENSITIVITY PARAMETERS***************
+sensitivitylogchange<- +1
+sensitivityweibullchange<-+10
+#******************ALTERING SENSITIVITY PARAMETERS***************
+#*
 #1-ingestion of drinking water (ml/day)
 #0-5 months
-logmeandrinkingwateringestion05<-3.37
+logmeandrinkingwateringestion05<-3.37+sensitivitylogchange
 logsddrinkingwateringestion05<-1.23
 #6-11 months
-logmeandrinkingwateringestion611<-5.24
+logmeandrinkingwateringestion611<-5.24+sensitivitylogchange
 logsddrinkingwateringestion611<-0.85
 #12-23 months
-logmeandrinkingwateringestion1223<-4.58
+logmeandrinkingwateringestion1223<-4.58+sensitivitylogchange
 logsddrinkingwateringestion1223<-0.89
 
 #2-ingestion of bathing water (ml/day)
@@ -84,30 +91,30 @@ logsddrinkingwateringestion1223<-0.89
 #logmeanbathingwateringestion611<-0
 #logsdbathingwateringestion611<-0
 #12-23 months
-logmeanbathingwateringestion1223<-3.49
+logmeanbathingwateringestion1223<-3.49+sensitivitylogchange
 logsdbathingwateringestion1223<-0.55
 
 #3-ingestion of soil (mg/day)
 #0-5 months
-logmeansoilingestion05<-2.73
+logmeansoilingestion05<-2.73+sensitivitylogchange
 logsdsoilingestion05<-0.69
 #6-11 months
-logmeansoilingestion611<-4.26
+logmeansoilingestion611<-4.26+sensitivitylogchange
 logsdsoilingestion611<-0.69
 #12-23 months
-logmeansoilingestion1223<-4.25
+logmeansoilingestion1223<-4.25+sensitivitylogchange
 logsdsoilingestion1223<-0.69
 
 #4i5-frequency of hand-to-mouth contact (handfraction/day)
 #0-5 months
 shape05<-1.58
-scale05<-58.22
+scale05<-58.22+sensitivityweibullchange
 #6-11 months
 shape611<-1.58
-scale611<-58.22
+scale611<-58.22+sensitivityweibullchange
 #12-23 months
 shape1223<-2.66
-scale1223<-56.62
+scale1223<-56.62+sensitivityweibullchange
 
 
 #SIMULATIONS ARE ASSIGNED RANDOM INGESTION VOLUMES AS PER THE DISTRIBUTIONS FOUND
@@ -294,11 +301,11 @@ caregiverhand2yearinfrisk<-mc(caregiverhand2yearrisk)
 #OUTPUT RESULTS OF DAILY INFECTION RISKS
 #1-Drinking water (stored water)
 #0-5 months
-print(storedwaterinfrisk05)
-quantile(storedwaterinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(storedwaterinfrisk05)
+#quantile(storedwaterinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #6-11 months
-print(storedwaterinfrisk611)
-quantile(storedwaterinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(storedwaterinfrisk611)
+#quantile(storedwaterinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #12-23 months
 print(storedwaterinfrisk1223)
 quantile(storedwaterinfrisk1223, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
@@ -314,43 +321,43 @@ quantile(bathingwaterinfrisk1223, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 
 #3-Soil
 #0-5 months
-print(soilinfrisk05)
-quantile(soilinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(soilinfrisk05)
+#quantile(soilinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #6-11 months
-print(soilinfrisk611)
-quantile(soilinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(soilinfrisk611)
+#quantile(soilinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #12-23 months
 print(soilinfrisk1223)
 quantile(soilinfrisk1223, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 
 #4-Child's hands
 #0-5 months
-print(childhandinfrisk05)
-quantile(childhandinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(childhandinfrisk05)
+#quantile(childhandinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #6-11 months
-print(childhandinfrisk611)
-quantile(childhandinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(childhandinfrisk611)
+#quantile(childhandinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #12-23 months
 print(childhandinfrisk1223)
 quantile(childhandinfrisk1223, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 
 #5-Caregiver's hands
 #0-5 months
-print(caregiverhandinfrisk05)
-quantile(caregiverhandinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(caregiverhandinfrisk05)
+#quantile(caregiverhandinfrisk05, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #6-11 months
-print(caregiverhandinfrisk611)
-quantile(caregiverhandinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
+#print(caregiverhandinfrisk611)
+#quantile(caregiverhandinfrisk611, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 #12-23 months
 print(caregiverhandinfrisk1223)
 quantile(caregiverhandinfrisk1223, c(0.025,0.1,0.25,0.5,0.75, 0.9, 0.975))
 
 #OUTPUT RESULTS OF 2-YEAR INFECTION RISKS
-summary(storedwater2yearinfrisk)
-summary(bathingwater2yearinfrisk)
-summary(soil2yearinfrisk)
-summary(childhand2yearinfrisk)
-summary(caregiverhand2yearinfrisk)
+#summary(storedwater2yearinfrisk)
+#summary(bathingwater2yearinfrisk)
+#summary(soil2yearinfrisk)
+#summary(childhand2yearinfrisk)
+#summary(caregiverhand2yearinfrisk)
 
 
 
